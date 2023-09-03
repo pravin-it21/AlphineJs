@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
+
+    <title>Alphine</title>
+</head>
+
+<body>
+    <div class="container mx-auto mt-6 max-w-sm">
+        <h1 class="text-5xl mb-4">Alphine</h1>
+
+
+        <!--x-data-->
+        <div 
+        x-data="{
+            open: false,
+             name: 'Pravin' ,
+             search: '', 
+             posts: [
+        {title: 'Post One'},
+         {title: 'Post two'}, 
+         {title: 'Post three'},
+         {title: 'Post four'},
+         ]
+        }"
+        >
+
+            <!--x-on-->
+        <button x-on:click="open = !open" :class="open ? 'bg-blue-800' : 'bg-slate-700'" class=" text-white px-4 py-2 rounded-xl">
+            Toggle
+        </button>
+
+
+        <!--x-show-->
+
+            <div x-show="open" x-transition x-cloak>
+                <p class="bg-gray-200 p-4 my-6 rounded">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error exercitationem adipisci earum perspiciatis quibusdam fuga corrupti incidunt, facere molestiae porro cum culpa quasi, optio omnis cupiditate. Nobis asperiores officia quisquam?
+                </p>
+
+            </div>
+
+            <!--x-text-->
+
+            <div class="my-4">
+                The value of name is <span x-text="name" class="font-bold">
+
+                </span>
+
+            </div>
+
+
+                <!--x-effect-->
+                <div x-effect="console.log(open)">
+
+                </div>
+
+
+                <!--x-modal-->
+                <input x-model="search" type="text" class="border p-2 w-full mb-2 mt-6" placeholder="search for some">
+
+                <p>
+                    <span class="font-bold">
+                        searching for:
+                    </span>
+                    <span x-text="search">
+                        
+                    </span>
+                </p>
+
+
+                <!--x-if-->
+                <template x-if="open">
+                    <div class="bg-gray-50 p-2 mt-8">
+                        based on condition
+                    </div>
+                </template>
+
+                <h3 class="text-2xl mt-6 mb-3 font-bold">Posts</h3>
+                <template x-for="post in posts">
+                    <div x-text="post.title"></div>
+                    
+                </template>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
