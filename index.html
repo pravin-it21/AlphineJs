@@ -6,6 +6,8 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <style>
         [x-cloak] {
             display: none;
@@ -91,6 +93,37 @@
                     <div x-text="post.title"></div>
                     
                 </template>
+
+                <button @click="posts.push({title: 'New Post'})" class="bg-blue-800 text-white px-4 py-2 rounded-lg mt-4">
+                    add post
+                </button>
+
+
+                <!--x-ref-->
+
+                
+
+
+                <div class="my-6"><div x-ref="text">Hello</div>
+
+                    <button @click="$refs.text.remove()" class="bg-black text-white p-2 rounded-lg">
+                        Click
+                    </button>
+                </div>
+
+
+                <!--x-html-->
+
+                <div x-html="(await axios.get('./test.html')).data">...</div>
+                
+
+                <!--$el-->
+                <button x-on:click="$el.innerHTML = 'hi'" class="mt-4 pt]-4 border">
+                   Replace Text 
+                </button>
+
+
+                <div x-init="$watch('posts', value => console.log(value))"></div>
         </div>
 
 
